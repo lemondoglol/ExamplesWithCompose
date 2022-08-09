@@ -18,6 +18,11 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        <service
+            android:name=".service_on_bind.OnBindService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -30,9 +35,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".serviceExample.ServiceActivity">
-
-        </activity>
+        <activity android:name=".serviceExample.ServiceActivity"/>
+        <activity android:name=".service_on_bind.FirstServiceActivityOnBind"/>
     </application>
 
 </manifest>

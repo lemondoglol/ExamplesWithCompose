@@ -22,6 +22,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.examplewithcompose.serviceExample.ServiceActivity
+import com.example.examplewithcompose.service_on_bind.FirstServiceActivityOnBind
 import com.example.examplewithcompose.ui.theme.ExampleWithComposeTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -67,6 +68,14 @@ fun MainActivityScreen(
             }
         }) {
             Text("To Service Example")
+        }
+
+        Button(onClick = {
+            Intent(context, FirstServiceActivityOnBind::class.java).also {
+                context.startActivity(it)
+            }
+        }) {
+            Text("To Bind Service Example")
         }
     }
 }
