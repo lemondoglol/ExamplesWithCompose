@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.examplewithcompose">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,12 +18,16 @@
         <service
             android:name=".serviceExample.MyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
 
         <service
             android:name=".service_on_bind.OnBindService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
+        <service
+            android:name=".foreground_service.ForegroundService"
+            android:enabled="true"
+            android:exported="true"/>
 
         <activity
             android:name=".MainActivity"
@@ -37,6 +43,7 @@
 
         <activity android:name=".serviceExample.ServiceActivity"/>
         <activity android:name=".service_on_bind.FirstServiceActivityOnBind"/>
+        <activity android:name=".foreground_service.ForegroundServiceExampleActivity"/>
     </application>
 
 </manifest>

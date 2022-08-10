@@ -16,18 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import com.example.examplewithcompose.foreground_service.ForegroundServiceExampleActivity
 import com.example.examplewithcompose.serviceExample.ServiceActivity
 import com.example.examplewithcompose.service_on_bind.FirstServiceActivityOnBind
 import com.example.examplewithcompose.ui.theme.ExampleWithComposeTheme
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -76,6 +69,14 @@ fun MainActivityScreen(
             }
         }) {
             Text("To Bind Service Example")
+        }
+
+        Button(onClick = {
+            Intent(context, ForegroundServiceExampleActivity::class.java).also {
+                context.startActivity(it)
+            }
+        }) {
+            Text("To Foreground Service Example")
         }
     }
 }
