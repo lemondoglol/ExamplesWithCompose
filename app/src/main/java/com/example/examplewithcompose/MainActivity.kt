@@ -1,13 +1,11 @@
 package com.example.examplewithcompose
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,16 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.fragment.app.FragmentActivity
+import com.example.examplewithcompose.common_ui.LoadImageFromInternet
 import com.example.examplewithcompose.foreground_service.ForegroundServiceExampleActivity
 import com.example.examplewithcompose.serviceExample.ServiceActivity
 import com.example.examplewithcompose.service_on_bind.FirstServiceActivityOnBind
 import com.example.examplewithcompose.ui.theme.ExampleWithComposeTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
 
-//    private val viewModel by viewModels<MainActivityViewModel>()
+    private val viewModel by viewModels<MainActivityViewModel>()
 
+    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = MainActivityViewModel()
@@ -36,13 +36,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainActivityScreen(modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp))
+                    LoadImageFromInternet()
                 }
             }
         }
     }
+}
+
+@Composable
+fun ExampleUI(
+    modifier: Modifier = Modifier,
+) {
 }
 
 @Composable

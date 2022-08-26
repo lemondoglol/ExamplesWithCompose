@@ -18,13 +18,13 @@ class MainActivityViewModel : ViewModel() {
         viewModelScope.launch {
             sharedFlow.collect {
                 delay(2000)
-                Log.d("Tuna", "$it")
+//                Log.d("Tuna", "$it")
             }
         }
         viewModelScope.launch {
             sharedFlow.collect {
                 delay(3000)
-                Log.d("Tuna", "$it")
+//                Log.d("Tuna", "$it")
             }
         }
 

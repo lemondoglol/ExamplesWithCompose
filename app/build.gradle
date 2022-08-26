@@ -46,6 +46,9 @@ android {
 }
 
 dependencies {
+    implementation("io.coil-kt:coil-compose:2.1.0")
+    implementation 'com.google.android.material:material:1.6.1'
+
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
     def fragment_version = "1.5.1"
