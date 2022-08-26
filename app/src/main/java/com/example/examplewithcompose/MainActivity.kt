@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.FragmentActivity
+import com.example.examplewithcompose.common_ui.LoadGif
 import com.example.examplewithcompose.common_ui.LoadImageFromInternet
 import com.example.examplewithcompose.foreground_service.ForegroundServiceExampleActivity
 import com.example.examplewithcompose.serviceExample.ServiceActivity
@@ -36,7 +37,7 @@ class MainActivity : FragmentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoadImageFromInternet()
+                    LoadGif()
                 }
             }
         }
