@@ -1,40 +1,28 @@
 package com.example.examplewithcompose
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel : ViewModel() {
 
-    private val _sharedFlow = MutableSharedFlow<Int>()
-    val sharedFlow = _sharedFlow.asSharedFlow()
+    private val _isLoading = MutableStateFlow(false)
+    internal val isLoading: StateFlow<Boolean> = _isLoading
 
-    init {
-        // collectors
-        viewModelScope.launch {
-            sharedFlow.collect {
-                delay(2000)
-//                Log.d("Tuna", "$it")
-            }
-        }
-        viewModelScope.launch {
-            sharedFlow.collect {
-                delay(3000)
-//                Log.d("Tuna", "$it")
-            }
-        }
+    private val _isEligible = MutableStateFlow(false)
+    internal val isEligible: StateFlow<Boolean> = _isEligible
 
-        squareNumber(5)
-    }
-
-    private fun squareNumber(num: Int) {
-        viewModelScope.launch {
-            _sharedFlow.emit(num * num)
-        }
-    }
+    // combine 2 flows into 1
+    internal val canAllowProcess: StateFlow<Boolean> = combine(
+        _isLoading, _isEligible
+    ) { arg1, arg2 ->
+        arg1 && arg2
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
 
 }
