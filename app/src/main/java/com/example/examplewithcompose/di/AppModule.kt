@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepository
+import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,17 +29,21 @@ private const val USER_PREFERENCES = "user_preferences"
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+//    @Provides
+//    @Singleton
+//    fun providePreferenceDataStoreRepository(
+//        @ApplicationContext context: Context,
+//        dataStore: DataStore<Preferences>,
+//    ): PreferenceDataStoreRepositoryImpl {
+//        return PreferenceDataStoreRepositoryImpl(
+//            context = context,
+//            dataStore = dataStore,
+//        )
+//    }
+
     @Provides
     @Singleton
-    fun providePreferenceDataStoreRepository(
-        @ApplicationContext context: Context,
-        dataStore: DataStore<Preferences>,
-    ): PreferenceDataStoreRepository {
-        return PreferenceDataStoreRepository(
-            context = context,
-            dataStore = dataStore,
-        )
-    }
+    fun provideContext(@ApplicationContext context: Context): Context = context
 
     /**
      * https://medium.com/androiddevelopers/datastore-and-dependency-injection-ea32b95704e3
