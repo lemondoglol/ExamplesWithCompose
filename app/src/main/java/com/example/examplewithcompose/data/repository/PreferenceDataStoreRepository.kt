@@ -1,6 +1,7 @@
-package com.example.examplewithcompose.preference_datastore
+package com.example.examplewithcompose.data.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -23,6 +24,9 @@ private object PreferencesKeys {
     val IS_ELIGIBLE = booleanPreferencesKey("is_eligible")
 }
 
+/**
+ * for simplicity, no interface created here
+ * */
 class PreferenceDataStoreRepository(
     context: Context,
     private val dataStore: DataStore<Preferences>,
@@ -52,6 +56,7 @@ class PreferenceDataStoreRepository(
         dataStore.edit {
             it[PreferencesKeys.IS_ELIGIBLE] = true
         }
+        Log.d("Tuna", "It works")
     }
 
 }

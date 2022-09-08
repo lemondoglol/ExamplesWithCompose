@@ -2,16 +2,23 @@ package com.example.examplewithcompose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-
+    private val preferenceDataStoreRepository: PreferenceDataStoreRepository,
 ) : ViewModel() {
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            preferenceDataStoreRepository.writeToPreferenceStore()
+        }
+    }
 
     private val _isLoading = MutableStateFlow(false)
     internal val isLoading: StateFlow<Boolean> = _isLoading

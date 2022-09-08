@@ -29,7 +29,6 @@ class MainActivity : FragmentActivity() {
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = MainActivityViewModel()
         setContent {
             ExampleWithComposeTheme {
                 // A surface container using the 'background' color from the theme
@@ -39,7 +38,8 @@ class MainActivity : FragmentActivity() {
                 ) {
 //                    MainActivityScreen()
 
-                    // tesing code starts here
+                    // testing code starts here
+                    viewModel
                 }
             }
         }
