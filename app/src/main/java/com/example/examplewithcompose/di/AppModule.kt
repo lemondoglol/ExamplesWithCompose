@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepositoryImpl
+import com.example.examplewithcompose.retrofit_example.api.SimpleApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +17,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 private const val USER_PREFERENCES = "user_preferences"
@@ -40,6 +42,23 @@ object AppModule {
 //            dataStore = dataStore,
 //        )
 //    }
+
+
+    private const val BASE_URL = "https://jsonplaceholder.typicode.com"
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit = Retrofit
+        .Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    // check Code
+    @Provides
+    @Singleton
+    fun provideSimpleApiClient(retrofit: Retrofit): SimpleApiClient
+        = retrofit.create(SimpleApiClient::class.java)
 
     @Provides
     @Singleton

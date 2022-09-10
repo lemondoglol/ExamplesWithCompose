@@ -1,8 +1,10 @@
 package com.example.examplewithcompose
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepository
+import com.example.examplewithcompose.retrofit_example.RetrofitRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -12,11 +14,16 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val preferenceDataStoreRepository: PreferenceDataStoreRepository,
+    private val retrofitRepository: RetrofitRepository,
 ) : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             preferenceDataStoreRepository.writeToPreferenceStore()
+
+            // testing retrofit
+            val res = retrofitRepository.getUser1()
+//            Log.d("Tuna", "Result: id ${res?.id} body ${res?.body}")
         }
     }
 
