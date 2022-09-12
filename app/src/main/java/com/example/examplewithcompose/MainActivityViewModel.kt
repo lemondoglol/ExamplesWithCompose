@@ -23,7 +23,7 @@ class MainActivityViewModel @Inject constructor(
 
             // testing retrofit
             val res = retrofitRepository.getUser1()
-//            Log.d("Tuna", "Result: id ${res?.id} body ${res?.body}")
+            Log.d("Tuna", "Result: id ${res?.id} body ${res?.body}")
         }
     }
 
