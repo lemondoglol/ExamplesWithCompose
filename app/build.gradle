@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -89,4 +90,12 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     // GSON
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // rxJava
+    implementation "io.reactivex.rxjava3:rxjava:3.1.5"
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.8'
 }
