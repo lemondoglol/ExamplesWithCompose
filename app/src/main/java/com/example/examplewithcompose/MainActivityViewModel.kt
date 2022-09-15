@@ -1,10 +1,11 @@
 package com.example.examplewithcompose
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepository
 import com.example.examplewithcompose.retrofit_example.RetrofitRepository
+import com.example.examplewithcompose.room_example.data_sources.labresults.LabResultRepository
+import com.example.examplewithcompose.room_example.data_sources.labresults.local_storage.LabResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -15,15 +16,28 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
     private val preferenceDataStoreRepository: PreferenceDataStoreRepository,
     private val retrofitRepository: RetrofitRepository,
+    private val labResultRepository: LabResultRepository,
 ) : ViewModel() {
+
+    private val _labResults = MutableStateFlow<List<LabResult>>(emptyList())
+    internal val labResults = _labResults.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            preferenceDataStoreRepository.writeToPreferenceStore()
+            testingRoom()
+        }
+    }
 
-            // testing retrofit
-            val res = retrofitRepository.getUser1()
-            Log.d("Tuna", "Result: id ${res?.id} body ${res?.body}")
+    private suspend fun testingRoom() {
+        labResultRepository.putLabResult(
+            LabResult(labResultId = "1", labResultTitle = "title 1", labResultContent = "content 1")
+        )
+        labResultRepository.putLabResult(
+            LabResult(labResultId = "2", labResultTitle = "title 2", labResultContent = "content 2")
+        )
+
+        labResultRepository.allLabResults.collect {
+            _labResults.value = it
         }
     }
 
