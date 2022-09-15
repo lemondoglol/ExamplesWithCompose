@@ -90,10 +90,9 @@ private suspend fun doSomeV2() = withContext(Dispatchers.IO) {
     val jobLst = mutableListOf<Deferred<Int>>()
     var index = 0
     while (index <= 5) { // this is causing the issue; for loop is okay
-        val newIndex = index
         jobLst.add(
             async {
-                mockAPICall(newIndex)
+                mockAPICall(index)
             }
         )
         index += 1
