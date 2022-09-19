@@ -2,28 +2,43 @@ package com.example.examplewithcompose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.examplewithcompose.coroutine_setup.DispatcherProvider
 import com.example.examplewithcompose.data.repository.PreferenceDataStoreRepository
 import com.example.examplewithcompose.retrofit_example.RetrofitRepository
 import com.example.examplewithcompose.room_example.data_sources.labresults.LabResultRepository
 import com.example.examplewithcompose.room_example.data_sources.labresults.local_storage.LabResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
+    dispatcherProvider: DispatcherProvider,
     private val preferenceDataStoreRepository: PreferenceDataStoreRepository,
     private val retrofitRepository: RetrofitRepository,
     private val labResultRepository: LabResultRepository,
 ) : ViewModel() {
 
+    // make this into the base VM class
+    private val supervisor: Job = SupervisorJob()
+    private val ioScope = CoroutineScope(dispatcherProvider.io() + supervisor)
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        // log the error, handle the exception
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        supervisor.cancel()
+        supervisor.cancelChildren()
+    }
+
+
     private val _labResults = MutableStateFlow<List<LabResult>>(emptyList())
     internal val labResults = _labResults.asStateFlow()
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        ioScope.launch(exceptionHandler) {
             testingRoom()
         }
     }

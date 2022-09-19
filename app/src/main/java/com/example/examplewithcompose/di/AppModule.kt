@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import dagger.Component
+import com.example.examplewithcompose.coroutine_setup.ApplicationCoroutineScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,18 +29,10 @@ private const val USER_PREFERENCES = "user_preferences"
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun providePreferenceDataStoreRepository(
-//        @ApplicationContext context: Context,
-//        dataStore: DataStore<Preferences>,
-//    ): PreferenceDataStoreRepositoryImpl {
-//        return PreferenceDataStoreRepositoryImpl(
-//            context = context,
-//            dataStore = dataStore,
-//        )
-//    }
-
+    @Provides
+    @Singleton
+    internal fun provideApplicationCoroutineScope(): ApplicationCoroutineScope =
+        ApplicationCoroutineScope(SupervisorJob())
 
     @Provides
     @Singleton
