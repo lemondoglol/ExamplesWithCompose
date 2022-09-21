@@ -1,5 +1,6 @@
 package com.example.examplewithcompose
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.examplewithcompose.coroutine_setup.DispatcherProvider
@@ -33,7 +34,12 @@ class MainActivityViewModel @Inject constructor(
         supervisor.cancelChildren()
     }
 
-
+    // testing code starts here
+//    viewModel.labResults.flowWithLifecycle(
+//    lifecycle, Lifecycle.State.CREATED
+//    ).onEach {
+//        Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+//    }.launchIn(lifecycleScope)
     private val _labResults = MutableStateFlow<List<LabResult>>(emptyList())
     internal val labResults = _labResults.asStateFlow()
 

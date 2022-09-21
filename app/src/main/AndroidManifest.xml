@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.examplewithcompose">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,24 +16,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ExampleWithCompose"
+        android:theme="@style/Theme.AppCompat.Light"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false" />
+
         <service
             android:name=".serviceExample.MyService"
             android:enabled="true"
-            android:exported="true"/>
-
+            android:exported="true" />
         <service
             android:name=".service_on_bind.OnBindService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
         <service
             android:name=".foreground_service.ForegroundService"
             android:enabled="true"
-            android:exported="true"/>
-
+            android:exported="true" />
         <service
-            android:name="com.example.examplewithcompose.firebase_message.MyFirebaseMessagingService"
+            android:name=".firebase_message.MyFirebaseMessagingService"
             android:exported="false"
             tools:ignore="Instantiatable">
             <intent-filter>
@@ -53,10 +55,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".serviceExample.ServiceActivity"/>
-        <activity android:name=".service_on_bind.FirstServiceActivityOnBind"/>
-        <activity android:name=".foreground_service.ForegroundServiceExampleActivity"/>
+        <activity android:name=".serviceExample.ServiceActivity" />
+        <activity android:name=".service_on_bind.FirstServiceActivityOnBind" />
+        <activity android:name=".foreground_service.ForegroundServiceExampleActivity" />
     </application>
 
 </manifest>

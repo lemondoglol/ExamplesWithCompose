@@ -3,7 +3,6 @@ package com.example.examplewithcompose
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
@@ -16,16 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.example.examplewithcompose.foreground_service.ForegroundServiceExampleActivity
 import com.example.examplewithcompose.serviceExample.ServiceActivity
 import com.example.examplewithcompose.service_on_bind.FirstServiceActivityOnBind
 import com.example.examplewithcompose.ui.theme.ExampleWithComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
@@ -45,11 +39,7 @@ class MainActivity : FragmentActivity() {
 //                    MainActivityScreen()
 
                     // testing code starts here
-                    viewModel.labResults.flowWithLifecycle(
-                        lifecycle, Lifecycle.State.CREATED
-                    ).onEach {
-                        Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-                    }.launchIn(lifecycleScope)
+                    startActivity(Intent(this, SecondActivity::class.java))
                 }
             }
         }
