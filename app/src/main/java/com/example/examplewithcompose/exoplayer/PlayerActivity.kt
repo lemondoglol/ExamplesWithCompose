@@ -33,6 +33,8 @@ class PlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+
+        initPlayer()
     }
 
     private fun initPlayer() {
@@ -62,24 +64,6 @@ class PlayerActivity : AppCompatActivity() {
             this.seekTo(viewModel.currentItem, viewModel.playbackPosition)
             this.addListener(playbackStateListener)
             this.prepare()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // API >= 24 supports multiple windows,
-        // your app can be visible but not active in split window mode
-        if (Util.SDK_INT > 23) {
-            initPlayer()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        hideSystemUi()
-        // init in onResume here to make sure we have all the resources ready
-        if (!this::exoPlayer.isInitialized || Util.SDK_INT <= 23) {
-            initPlayer()
         }
     }
 
