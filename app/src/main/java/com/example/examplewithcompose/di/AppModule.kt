@@ -8,6 +8,10 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.ui.PlayerView
+import com.example.examplewithcompose.R
 import com.example.examplewithcompose.coroutine_setup.ApplicationCoroutineScope
 import dagger.Module
 import dagger.Provides
@@ -53,5 +57,20 @@ object AppModule {
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { appContext.preferencesDataStoreFile(USER_PREFERENCES) }
         )
+    }
+
+    /**
+     * ExoPlayer
+     * */
+    @Singleton
+    @Provides
+    fun provideExoPlayer(@ApplicationContext context: Context): ExoPlayer {
+        // auto adjust video quality based on network bandwidth
+        val trackSelector = DefaultTrackSelector(context).apply {
+            setParameters(buildUponParameters().setMaxVideoSizeSd())
+        }
+        return ExoPlayer.Builder(context)
+            .setTrackSelector(trackSelector)
+            .build()
     }
 }
