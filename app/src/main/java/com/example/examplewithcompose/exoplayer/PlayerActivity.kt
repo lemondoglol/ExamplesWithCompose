@@ -35,6 +35,7 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_player)
 
         initPlayer()
+        hideSystemUi()
     }
 
     private fun initPlayer() {
