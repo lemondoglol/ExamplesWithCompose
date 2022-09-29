@@ -24,7 +24,7 @@ class ForegroundServiceExampleActivity : ComponentActivity() {
                 ) {
                     Button(onClick = {
                         Intent(this, ForegroundService::class.java).also {
-                            startService(it)
+                            startForegroundService(it)
                         }
                     }) {
                         Text(text = "Click To Start a Foreground Service")
