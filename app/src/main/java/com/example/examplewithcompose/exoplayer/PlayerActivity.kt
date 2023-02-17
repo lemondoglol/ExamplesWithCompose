@@ -43,7 +43,8 @@ class PlayerActivity : AppCompatActivity() {
 
         // create item
         val mediaItem = MediaItem.fromUri(
-            "https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"
+//            "https://storage.googleapis.com/exoplayer-test-media-0/play.mp3"
+            "https://d274s1rljlgioj.cloudfront.net/BK_ATLS_010565_48000_144000.mp4"
             // for MP4, simply replace this URI
         )
         exoPlayer.addMediaItem(mediaItem)
@@ -54,7 +55,7 @@ class PlayerActivity : AppCompatActivity() {
         // make video DASH, auto adjust quality based on network bandwidth
         val dashMediaItem = MediaItem.Builder()
 //            .setUri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-            .setUri(getString(R.string.media_url_dash)) // this link matters if use DASH
+            .setUri(getString(R.string.dash_audible)) // this link matters if use DASH
             .setMimeType(MimeTypes.APPLICATION_MPD)
             .build()
         exoPlayer.addMediaItem(dashMediaItem)

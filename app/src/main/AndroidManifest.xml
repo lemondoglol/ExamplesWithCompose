@@ -63,6 +63,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".serviceExample.ServiceActivity" />
+        <activity android:name=".flow.FlowExampleActivity" />
         <activity android:name=".service_on_bind.FirstServiceActivityOnBind" />
         <activity android:name=".foreground_service.ForegroundServiceExampleActivity" />
     </application>

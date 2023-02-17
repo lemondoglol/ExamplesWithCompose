@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ExampleWithCompose</string>
+    <string name="dash_audible"><![CDATA[https://d1amro0gamo4wq.cloudfront.net/bk_atls_010315/1/signed/g1/bk_atls_010315_48,320-ac4_v8.master.mpd?ss_sec=20&id=licenseId&use_segment_base=true&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=MD1BAJ27VEMQ8GGY7BZB/20230214/us-east-1/cloudfront/aws4_request&X-Amz-Date=20230214T191452Z&X-Amz-Expires=604799&X-Amz-SignedHeaders=host&X-Amz-Signature=04ed02614fadd2d22d6622e5c04a4fd72722e631cf5d5e702e603efe3643e4f2]]></string>
     <string name="media_url_dash"><![CDATA[https://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?as=fmp4_audio_clear,fmp4_sd_hd_clear&sparams=ip,ipbits,expire,source,id,as&ip=0.0.0.0&ipbits=0&expire=19000000000&signature=51AF5F39AB0CEC3E5497CD9C900EBFEAECCCB5C7.8506521BFC350652163895D4C26DEE124209AA9E&key=ik0]]></string>
 </resources>

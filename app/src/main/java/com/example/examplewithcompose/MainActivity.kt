@@ -15,8 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.FragmentActivity
+import com.example.examplewithcompose.exoplayer.PlayerActivity
+import com.example.examplewithcompose.flow.FlowExampleActivity
 import com.example.examplewithcompose.foreground_service.ForegroundServiceExampleActivity
-import com.example.examplewithcompose.permissions.PermissionsActivity
 import com.example.examplewithcompose.serviceExample.ServiceActivity
 import com.example.examplewithcompose.service_on_bind.FirstServiceActivityOnBind
 import com.example.examplewithcompose.ui.theme.ExampleWithComposeTheme
@@ -40,7 +41,9 @@ class MainActivity : FragmentActivity() {
 //                    MainActivityScreen()
 
                     // testing code starts here
-                    startActivity(Intent(this, PermissionsActivity::class.java))
+//                    startActivity(Intent(this, PermissionsActivity::class.java))
+//                    startActivity(Intent(this, PlayerActivity::class.java))
+                    startActivity(Intent(this, FlowExampleActivity::class.java))
                 }
             }
         }
